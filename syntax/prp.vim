@@ -195,7 +195,7 @@ syn cluster pyropeDeclaration contains=pyropeAliasDeclaration,pyropeAliasDeclara
 " lima
 syn match   pyropeControl	       "\<\%(and\|break\|in\|next\|not\|or\|redo\|rescue\|retry\|try\|return\|as\)\>[?!]\@!"
 syn match   pyropeOperator       "\<defined?" display
-syn match   pyropeKeyword	       "\<\%(super\|yield\|stage\|I\)\>[?!]\@!"
+syn match   pyropeKeyword	       "\<\%(super\|yield\|stage\|I\|puts\)\>[?!]\@!"
 syn match   pyropeBoolean	       "\<\%(true\|false\)\>[?!]\@!"
 syn match   pyropePseudoVariable "\<\%(nil\|self\|__ENCODING__\|__FILE__\|__LINE__\|__callee__\|__method__\)\>[?!]\@!" " TODO
                                   
