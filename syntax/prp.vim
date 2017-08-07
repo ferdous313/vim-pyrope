@@ -283,7 +283,7 @@ endif
 syn match pyropeKeywordAsMethod "\%(\%(\.\@<!\.\)\|::\)\_s*\%(alias\|and\|begin\|break\|case\|class\|def\|defined\|do\|else\)\>" transparent contains=NONE
 syn match pyropeKeywordAsMethod "\%(\%(\.\@<!\.\)\|::\)\_s*\%(elif\|end\|ensure\|false\|for\|if\|in\|module\|next\|nil\)\>"  transparent contains=NONE
 syn match pyropeKeywordAsMethod "\%(\%(\.\@<!\.\)\|::\)\_s*\%(not\|or\|redo\|rescue\|retry\|try\|return\|self\|super\|then\|true\)\>" transparent contains=NONE
-syn match pyropeKeywordAsMethod "\%(\%(\.\@<!\.\)\|::\)\_s*\%(undef\|unless\|until\|when\|while\|yield\|stage\|I\|BEGIN\|END\|__FILE__\|__LINE__\)\>" transparent contains=NONE
+syn match pyropeKeywordAsMethod "\%(\%(\.\@<!\.\)\|::\)\_s*\%(undef\|unless\|until\|when\|while\|yield\|stage\|I\|puts\|BEGIN\|END\|__FILE__\|__LINE__\)\>" transparent contains=NONE
 
 syn match pyropeKeywordAsMethod "\<\%(alias\|begin\|case\|class\|def\|do\|end\)[?!]" transparent contains=NONE
 syn match pyropeKeywordAsMethod "\<\%(if\|module\|undef\|unless\|until\|while\)[?!]" transparent contains=NONE
