@@ -196,6 +196,7 @@ syn cluster pyropeDeclaration contains=pyropeAliasDeclaration,pyropeAliasDeclara
 syn match   pyropeControl	       "\<\%(and\|break\|in\|next\|not\|or\|redo\|rescue\|retry\|try\|return\|as\)\>[?!]\@!"
 syn match   pyropeOperator       "\<defined?" display
 syn match   pyropeKeyword	       "\<\%(super\|yield\|stage\|I\|puts\)\>[?!]\@!"
+syn match   pyropeHierarchy              "__.*" 
 syn match   pyropeBoolean	       "\<\%(true\|false\)\>[?!]\@!"
 syn match   pyropePseudoVariable "\<\%(nil\|self\|__ENCODING__\|__FILE__\|__LINE__\|__callee__\|__method__\)\>[?!]\@!" " TODO
                                   
@@ -332,6 +333,7 @@ hi def link pyropePredefinedConstant	pyropePredefinedIdentifier
 hi def link pyropePredefinedVariable	pyropePredefinedIdentifier
 hi def link pyropeSymbol		Constant
 hi def link pyropeKeyword		Keyword
+hi def link pyropeHierarchy             keyword
 hi def link pyropeOperator		Operator
 hi def link pyropeBeginEnd		Statement
 hi def link pyropeAccess		Statement
