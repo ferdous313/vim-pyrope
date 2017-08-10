@@ -41,6 +41,7 @@ syn match pyropeStringEscape "\%(\\M-\\C-\|\\C-\\M-\|\\M-\\c\|\\c\\M-\|\\c\|\\C-
 syn match pyropeQuoteEscape  "\\[\\']"											    contained display
 
 syn region pyropeInterpolation	      matchgroup=pyropeInterpolationDelimiter start="#{" end="}" contained contains=ALLBUT,@pyropeNotTop
+"lima __end
 syn match  pyropeInterpolation	      "#\%(\$\|@@\=\)\w\+"    display contained contains=pyropeInterpolationDelimiter,pyropeInstanceVariable,pyropeClassVariable,pyropeGlobalVariable,pyropePredefinedVariable
 syn match  pyropeInterpolationDelimiter "#\ze\%(\$\|@@\=\)\w\+" display contained
 syn match  pyropeInterpolation	      "#\$\%(-\w\|\W\)"       display contained contains=pyropeInterpolationDelimiter,pyropePredefinedVariable,pyropeInvalidVariable
@@ -106,6 +107,10 @@ syn match  pyropeSymbol		"\%([{(,]\_s*\)\@<=[[:space:],{]\l\w*[!?]\=::\@!"hs=s+1
 syn match  pyropeSymbol		"[[:space:],{]\%(\h\|[^\x00-\x7F]\)\%(\w\|[^\x00-\x7F]\)*[!?]\=:\s\@="hs=s+1,he=e-1
 syn region pyropeSymbol		start="[]})\"':]\@<!:'"  end="'"  skip="\\\\\|\\'"  contains=pyropeQuoteEscape fold
 syn region pyropeSymbol		start="[]})\"':]\@<!:\"" end="\"" skip="\\\\\|\\\"" contains=@pyropeStringSpecial fold
+"lima
+
+"syn region pyropeSymbol		start="[]})\"'__]\@<!:\"" end="\"" skip="\\\\\|\\\"" contains=@pyropeStringSpecial fold
+"syn region pyropeSymbol		start="[]})\"'__]\@<!:'"  end="'"  skip="\\\\\|\\'"  contains=pyropeQuoteEscape fold
 
 syn match  pyropeBlockParameter	  "\%(\h\|[^\x00-\x7F]\)\%(\w\|[^\x00-\x7F]\)*" contained
 syn region pyropeBlockParameterList start="\%(\%(\<do\>\|{\)\s*\)\@<=|" end="|" oneline display contains=pyropeBlockParameter
@@ -196,7 +201,9 @@ syn cluster pyropeDeclaration contains=pyropeAliasDeclaration,pyropeAliasDeclara
 syn match   pyropeControl	       "\<\%(and\|break\|in\|next\|not\|or\|redo\|rescue\|retry\|try\|return\|as\)\>[?!]\@!"
 syn match   pyropeOperator       "\<defined?" display
 syn match   pyropeKeyword	       "\<\%(super\|yield\|stage\|I\|puts\)\>[?!]\@!"
-syn match   pyropeHierarchy              "__.*" 
+"lima __word
+syn match   pyropeKeyword             "\<__[a-zA-Z0-9_]*"
+"syn match   pyropeKeyword         "^__.*[\s\.]$"
 syn match   pyropeBoolean	       "\<\%(true\|false\)\>[?!]\@!"
 syn match   pyropePseudoVariable "\<\%(nil\|self\|__ENCODING__\|__FILE__\|__LINE__\|__callee__\|__method__\)\>[?!]\@!" " TODO
                                   
@@ -220,7 +227,7 @@ if !exists("b:pyrope_no_expensive") && !exists("pyrope_no_expensive")
   " modifiers
   syn match pyropeConditionalModifier "\<\%(if\|unless\)\>"    display
   syn match pyropeRepeatModifier	     "\<\%(while\|until\)\>" display
-
+ii
   syn region pyropeDoBlock      matchgroup=pyropeControl start="\<do\>" end="\<end\>"                 contains=ALLBUT,@pyropeNotTop fold
   " curly bracket block or hash literal
   syn region pyropeCurlyBlock	matchgroup=pyropeCurlyBlockDelimiter  start="{" end="}"				contains=ALLBUT,@pyropeNotTop fold
@@ -231,6 +238,9 @@ if !exists("b:pyrope_no_expensive") && !exists("pyrope_no_expensive")
   syn region pyropeCaseExpression	       matchgroup=pyropeConditional start="\<case\>"  end="\<end\>" contains=ALLBUT,@pyropeNotTop fold
   syn region pyropeConditionalExpression matchgroup=pyropeConditional start="\%(\%(^\|\.\.\.\=\|[{:,;([<>~\*/%&^|+=-]\|\%(\<[_[:lower:]][_[:alnum:]]*\)\@<![?!]\)\s*\)\@<=\%(if\|unless\)\>" end="\%(\%(\%(\.\@<!\.\)\|::\)\s*\)\@<!\<end\>" contains=ALLBUT,@pyropeNotTop fold
 
+  "lima`
+  "syn region   pyrope__words             start="\%(__.*\):\@!"  end="\%(\.\|:\|=\|\s\)" 
+  
   syn match pyropeConditional "\<\%(then\|else\|elif\|when\)\>[?!]\@!"	contained containedin=pyropeCaseExpression
   syn match pyropeConditional "\<\%(then\|else\|elif\)\>[?!]\@!" contained containedin=pyropeConditionalExpression
 
@@ -333,7 +343,7 @@ hi def link pyropePredefinedConstant	pyropePredefinedIdentifier
 hi def link pyropePredefinedVariable	pyropePredefinedIdentifier
 hi def link pyropeSymbol		Constant
 hi def link pyropeKeyword		Keyword
-hi def link pyropeHierarchy             keyword
+"hi def link pyropeHierarchy             keyword
 hi def link pyropeOperator		Operator
 hi def link pyropeBeginEnd		Statement
 hi def link pyropeAccess		Statement
